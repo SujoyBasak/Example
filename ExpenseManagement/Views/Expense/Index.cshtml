@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ExpenseManagement.EMS_DB>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @Html.ActionLink("Create New", "AddExpense")
+    <table width="100%">
+        <tr>
+            <th>Expense Id</th>
+            <th>DateOfExpense</th>
+            <th>ExpenseType</th>
+            <th>Amount</th>
+
+        </tr>
+        <tr>
+            @foreach (var x in Model)
+            {
+                <td>@x.ExpenseId</td>
+                <td>@x.DateOfExpense</td>
+                <td>@x.ExpenseType</td>
+                <td>@x.Amount</td>
+            }
+        </tr>
+    </table>
+    
+</body>
+</html>

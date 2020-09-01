@@ -1,0 +1,57 @@
+﻿@model ExpenseManagement.EMS_DB
+
+
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddExpense</title>
+</head>
+<body>
+    @using (Html.BeginForm("AddExpense", "Expense", FormMethod.Post))
+    {
+        <div>
+            @if (IsPost)
+            {
+                @ViewBag.Msg
+            }
+            <table>
+                <tr>
+                    <td>ExpenseType</td>
+                    <td>
+                        @Html.DropDownList("ExpenseExpenseTypeList", new SelectList(Model.ExpenseTypeList), "ExpenseType", new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.ExpenseType, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ExpenseType, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Amount</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Amount, new { id = "Expense_Amount" })
+                        @Html.ValidationMessageFor(m => m.Amount)
+                    </td>
+                </tr>
+                <tr>
+                    <td>DateOfExpense</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.DateOfExpense, new { @class = "datefield", Type = "date", id = "Expense_DateOfExpense" })
+                        @Html.ValidationMessageFor(m => m.DateOfExpense)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" id="Submit" value="Add Expense" /></td>
+                </tr>
+            </table>
+        </div>
+    }
+</body>
+</html>
